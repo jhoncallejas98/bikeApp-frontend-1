@@ -1,101 +1,138 @@
-body, :host {
-  background: #F5F5F5;
-  color: #212121;
-  font-family: 'Segoe UI', Arial, sans-serif;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
 }
-h1 {
-  color: #4CAF50;
-  margin-bottom: 1.5rem;
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, #f8fafc 0%, #e9ecef 100%);
 }
+
+.home-wrapper {
+  flex: 1 0 auto;
+  min-height: calc(100vh - 40px);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 3rem 1.5rem;
+  box-sizing: border-box;
+}
+
+.home-title {
+  font-size: 2.3rem;
+  font-weight: 800;
+  color: #1976d2;
+  margin-bottom: 2.5rem;
+  letter-spacing: 0.01em;
+  text-align: left;
+}
+
 .estaciones-lista {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
+  gap: 2.5rem;
   justify-content: center;
-  background: none;
-  box-shadow: none;
-  padding: 0;
-  margin: 2rem 0 0 0;
 }
+
 .estacion-card {
   background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 4px 24px 0 rgba(76,175,80,0.10);
-  padding: 1.7rem 2.2rem 1.2rem 2.2rem;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px rgba(123,228,149,0.10);
+  border: 2px solid #b2f7cc;
+  padding: 2rem 2.2rem;
   min-width: 270px;
-  max-width: 320px;
+  max-width: 370px;
+  flex: 1 1 320px;
+  color: #23272f;
   display: flex;
   flex-direction: column;
+  gap: 1.2rem;
+  font-size: 1.12rem;
+  font-weight: 500;
+  transition: box-shadow 0.22s, transform 0.18s, border 0.18s;
+  margin-bottom: 1.5rem;
   align-items: flex-start;
-  transition: box-shadow 0.18s, transform 0.18s;
-  border: 1.5px solid #F5F5F5;
-  position: relative;
 }
+
 .estacion-card:hover {
-  box-shadow: 0 8px 32px 0 rgba(76,175,80,0.16);
-  transform: translateY(-3px) scale(1.015);
+  box-shadow: 0 16px 48px rgba(25,118,210,0.18);
+  transform: translateY(-6px) scale(1.025);
+  border: 2px solid #7be495;
 }
-.estacion-card-header {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  margin-bottom: 0.7rem;
-}
-.estacion-icon {
-  font-size: 2.1rem;
-  color: #4CAF50;
-  filter: drop-shadow(0 2px 8px #81C78422);
-}
-.estacion-title {
-  font-size: 1.18rem;
+
+.estacion-card-title {
+  font-size: 1.25rem;
   font-weight: 700;
-  color: #212121;
+  color: #1976d2;
+  letter-spacing: 0.01em;
 }
-.estacion-card-body {
-  margin-bottom: 1.1rem;
+
+.estacion-card-info {
+  color: #444a57;
+  font-size: 1.05rem;
+}
+
+.estacion-card-badge {
+  background: #43a047 !important;
+  color: #fff !important;
+  font-size: 1.08rem;
+  font-weight: 700;
+  border-radius: 10px;
+  padding: 0.35em 1.2em;
+  box-shadow: 0 1px 4px rgba(67,160,71,0.10);
+  letter-spacing: 0.02em;
+  margin-top: 0.7rem;
+  display: inline-block;
+  border: none;
+}
+
+.estacion-card-link {
+  margin-top: 1.2rem;
+  color: #1976d2;
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 2px solid #b2f7cc;
+  transition: color 0.18s, border 0.18s;
+  font-size: 1.05rem;
+}
+
+.estacion-card-link:hover {
+  color: #43a047;
+  border-bottom: 2px solid #43a047;
+}
+
+footer {
+  flex-shrink: 0;
   width: 100%;
-}
-.estacion-location {
-  color: #81C784;
-  font-size: 1.01rem;
-  margin-bottom: 0.5rem;
+  min-height: 40px;
+  padding: 0.5rem 0;
+  background: linear-gradient(90deg, #b2f7cc 0%, #7be495 100%);
+  color: #23272f;
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 -2px 12px rgba(44,62,80,0.08);
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  letter-spacing: 0.02em;
+  margin-top: 0;
+  border-radius: 0;
 }
-.estacion-bikes {
-  margin-bottom: 0.2rem;
-}
-.badge {
-  background: #4CAF50;
-  color: #fff;
-  font-size: 1.01rem;
-  font-weight: 600;
-  border-radius: 50px;
-  padding: 0.35em 1.1em;
-  display: inline-block;
-  letter-spacing: 0.2px;
-  box-shadow: 0 2px 8px 0 #4CAF5022;
-}
-.estacion-card-footer {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
-.btn-alquilar {
-  background: linear-gradient(90deg, #4CAF50 60%, #81C784 100%);
-  color: #fff;
-  border: none;
-  border-radius: 8px;
-  padding: 0.5rem 1.3rem;
-  font-weight: 600;
-  font-size: 1.05rem;
-  cursor: pointer;
-  transition: background 0.18s, box-shadow 0.18s;
-  box-shadow: 0 2px 8px 0 #4CAF5022;
-}
-.btn-alquilar:hover, .btn-alquilar:focus {
-  background: linear-gradient(90deg, #388E3C 60%, #81C784 100%);
-  color: #fff;
-  box-shadow: 0 4px 16px 0 #4CAF5044;
+
+@media (max-width: 900px) {
+  .estaciones-lista {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .estacion-card {
+    max-width: 100%;
+    min-width: 0;
+  }
+  .home-wrapper {
+    padding: 1.5rem 0.5rem 3rem 0.5rem;
+  }
 }

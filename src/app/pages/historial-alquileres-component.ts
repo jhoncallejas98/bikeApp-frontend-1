@@ -18,44 +18,64 @@ export class HistorialAlquileresComponent implements OnInit {
   estaciones: Station[] = [];
   alquilerId: string = '';
   stationId: string = '';
-  confirmMsg: string = '';
-  errorMsg: string = '';
+  mensaje: string = '';
+  error: string = '';
   devolviendo: boolean = false;
+  loading: boolean = true;
 
   get alquileresActivos(): Book[] {
-    return this.alquileres.filter(a => a.activo);
+    return this.alquileres.filter(a => a.activo === true);
   }
 
-  constructor(private bookService: BookService, private stationService: StationService) {}
+  constructor(
+    private bookService: BookService,
+    private stationService: StationService
+  ) {}
 
   ngOnInit() {
-    this.loadAlquileres();
+    this.cargarAlquileres();
     this.stationService.getStations().subscribe((estaciones: Station[]) => this.estaciones = estaciones);
   }
 
-  loadAlquileres() {
-    this.bookService.getBooks().subscribe((alqs: Book[]) => this.alquileres = alqs);
-  }
-
-  devolver() {
-    this.confirmMsg = '';
-    this.errorMsg = '';
-    if (!this.alquilerId || !this.stationId) {
-      this.errorMsg = 'Completa todos los campos.';
-      return;
-    }
-    this.bookService.devolver({ alquilerId: this.alquilerId, stationId: this.stationId }).subscribe({
-      next: () => {
-        this.confirmMsg = '¡Bicicleta devuelta correctamente!';
-        this.loadAlquileres();
+  cargarAlquileres() {
+    this.loading = true;
+    this.bookService.getBooks().subscribe({
+      next: (alqs: Book[]) => {
+        this.alquileres = [...alqs];
+        this.loading = false;
       },
-      error: () => {
-        this.errorMsg = 'Error al devolver la bicicleta.';
+      error: (err) => {
+        this.loading = false;
+        this.error = 'Error al cargar los alquileres.';
       }
     });
   }
 
-  // Métodos auxiliares para el template
+  devolver() {
+    this.mensaje = '';
+    this.error = '';
+    if (!this.alquilerId || !this.stationId) {
+      this.error = 'Completa todos los campos.';
+      return;
+    }
+    this.devolviendo = true;
+    this.bookService.devolver({ alquilerId: this.alquilerId, stationId: this.stationId }).subscribe({
+      next: (res) => {
+        this.mensaje = res?.msg || '¡Bicicleta devuelta correctamente!';
+        this.devolviendo = false;
+        this.alquilerId = '';
+        this.stationId = '';
+        setTimeout(() => {
+          this.cargarAlquileres();
+        }, 1200);
+      },
+      error: (err) => {
+        this.error = err?.error?.msg || 'Error al devolver la bicicleta.';
+        this.devolviendo = false;
+      }
+    });
+  }
+
   getBikeSerial(bike: any): string {
     return typeof bike === 'string' ? bike : bike.serial;
   }

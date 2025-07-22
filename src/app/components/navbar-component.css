@@ -1,10 +1,10 @@
 nav {
-  background: #E8F5E9;
+  background: #fff;
   padding: 1.2rem 2.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0 4px 24px 0 rgba(27,94,32,0.08);
+  box-shadow: 0 4px 24px 0 rgba(56,142,60,0.08);
   border-radius: 0 0 18px 18px;
   position: sticky;
   top: 0;
@@ -18,16 +18,16 @@ nav {
 .brand {
   font-weight: 700;
   font-size: 1.5rem;
-  color: #1B5E20;
+  color: #388E3C;
   letter-spacing: 1.5px;
-  text-shadow: 0 2px 8px #E8F5E9;
+  text-shadow: 0 2px 8px #A5D6A7;
 }
 .links {
   display: flex;
   gap: 2.2rem;
 }
 nav a {
-  color: #1B5E20;
+  color: #388E3C;
   text-decoration: none;
   font-weight: 600;
   font-size: 1.08rem;
@@ -36,13 +36,13 @@ nav a {
   transition: background 0.18s, color 0.18s;
 }
 nav a:hover, nav a:focus {
-  background: #FFC107;
-  color: #fff;
+  background: #FFE082;
+  color: #388E3C;
 }
 @media (max-width: 700px) {
   nav {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     padding: 1rem 1.2rem;
   }
   .links {
@@ -51,5 +51,10 @@ nav a:hover, nav a:focus {
   }
   .brand {
     font-size: 1.1rem;
+    text-align: center;
+  }
+  .logo {
+    justify-content: center;
+    width: 100%;
   }
 }

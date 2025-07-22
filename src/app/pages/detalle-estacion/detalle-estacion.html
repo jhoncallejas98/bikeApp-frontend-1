@@ -34,13 +34,11 @@
         <div class="card shadow-sm">
           <div class="card-body">
             <h4 class="card-title mb-3"><span class="me-2">🔄</span>Devolver bicicleta</h4>
-            <form [formGroup]="devolucionForm" (ngSubmit)="devolverBicicleta()" novalidate>
-              <div class="mb-3">
-                <label for="bookId" class="form-label">ID de alquiler *</label>
-                <input id="bookId" formControlName="bookId" class="form-control" [class.is-invalid]="devolucionForm.get('bookId')?.invalid && devolucionForm.get('bookId')?.touched">
-                <div class="invalid-feedback" *ngIf="devolucionForm.get('bookId')?.invalid && devolucionForm.get('bookId')?.touched">ID requerido</div>
-              </div>
-              <button class="btn btn-warning w-100" type="submit" [disabled]="devolucionForm.invalid">Devolver</button>
+            <form [formGroup]="devolucionForm" (ngSubmit)="devolverBicicleta()" novalidate class="detalle-form">
+              <label for="bookId">ID de alquiler *</label>
+              <input id="bookId" formControlName="bookId" [class.is-invalid]="devolucionForm.get('bookId')?.invalid && devolucionForm.get('bookId')?.touched">
+              <div class="invalid-feedback" *ngIf="devolucionForm.get('bookId')?.invalid && devolucionForm.get('bookId')?.touched">ID requerido</div>
+              <button class="btn-detalle" type="submit" [disabled]="devolucionForm.invalid">Devolver</button>
             </form>
           </div>
         </div>

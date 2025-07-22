@@ -1,20 +1,20 @@
-<h1>Estaciones disponibles</h1>
-<div class="estaciones-lista">
-  <div *ngFor="let estacion of estaciones" class="estacion-card">
-    <div class="estacion-card-header">
-      <span class="estacion-icon">🏢</span>
-      <b class="estacion-title">{{ estacion.name }}</b>
-    </div>
-    <div class="estacion-card-body">
-      <div class="estacion-location">📍 {{ estacion.location }}</div>
-      <div class="estacion-bikes">
-        <span class="badge">
-          🚲 {{ estacion.bikes.length }}/{{ estacion.capacity }} disponibles
-        </span>
+<div class="home-wrapper">
+  <h1 class="home-title">Estaciones disponibles</h1>
+  <div class="estaciones-lista">
+    <div *ngFor="let estacion of estaciones" class="estacion-card">
+      <div class="estacion-card-title">
+        🏢 {{ estacion.name }}
       </div>
-    </div>
-    <div class="estacion-card-footer">
-      <a [routerLink]="['/detalle-estacion', estacion._id]" class="btn-alquilar">Ver detalle</a>
+      <div class="estacion-card-info">
+        <span>📍 {{ estacion.location }}</span>
+      </div>
+      <span class="estacion-card-badge">
+        🚲 {{ estacion.bikes.length }}/{{ estacion.capacity }} disponibles
+      </span>
+      <a [routerLink]="['/detalle-estacion', estacion._id]" class="estacion-card-link">Ver detalle</a>
     </div>
   </div>
 </div>
+<footer>
+  <span>🚲 <b>BikeApp</b> &copy; 2025 BikeApp. Todos los derechos reservados.</span>
+</footer>

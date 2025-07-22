@@ -198,3 +198,65 @@
 .error {
   color: #c62828;
 }
+
+.detalle-form {
+  background: linear-gradient(135deg, #e9fbe5 0%, #f8fafc 100%);
+  padding: 2rem 2.5rem;
+  border-radius: 18px;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 6px 32px rgba(123,228,149,0.10);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  align-items: center;
+  border: 2.5px solid #7be495;
+}
+
+.detalle-form label {
+  color: #23272f;
+  font-weight: 700;
+  margin-right: 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+.detalle-form select, .detalle-form input {
+  background: #fff;
+  color: #23272f;
+  border: 1.5px solid #bfc9d1;
+  border-radius: 8px;
+  padding: 0.7rem 1.3rem;
+  font-size: 1.08rem;
+  margin-right: 1.2rem;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 1px 4px rgba(123,228,149,0.08);
+}
+.detalle-form select:focus, .detalle-form input:focus {
+  border: 1.5px solid #7be495;
+  outline: none;
+  box-shadow: 0 0 0 2px #7be49533;
+}
+
+.btn-detalle {
+  background: linear-gradient(90deg, #7be495 0%, #1976d2 100%);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 0.7rem 2rem;
+  font-size: 1.08rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+  box-shadow: 0 2px 12px rgba(123,228,149,0.10);
+  letter-spacing: 0.03em;
+}
+.btn-detalle:hover, .btn-detalle:focus {
+  background: linear-gradient(90deg, #1976d2 0%, #7be495 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 24px rgba(123,228,149,0.18);
+}
+.btn-detalle:disabled {
+  background: #e0e0e0;
+  color: #888;
+  cursor: not-allowed;
+  box-shadow: none;
+}

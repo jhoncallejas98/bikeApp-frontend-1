@@ -1,8 +1,9 @@
-<h1>Historial de Alquileres</h1>
-<div class="historial-lista">
-  <form (ngSubmit)="devolver()" class="devolver-form" *ngIf="alquileresActivos.length > 0">
+<div class="historial-wrapper">
+  <h1 class="historial-title">Historial de Alquileres</h1>
+
+  <form (ngSubmit)="devolver()" class="devolver-form" *ngIf="alquileresActivos.length > 0" [attr.aria-busy]="devolviendo">
     <label for="alquilerId">Bicicleta en uso:</label>
-    <select id="alquilerId" [(ngModel)]="alquilerId" name="alquilerId" required>
+    <select id="alquilerId" [(ngModel)]="alquilerId" name="alquilerId" required [disabled]="devolviendo">
       <option value="" disabled selected>Selecciona una bicicleta en uso</option>
       <ng-container *ngFor="let alq of alquileresActivos">
         <option [value]="alq._id">{{ getBikeSerial(alq.bike) }}</option>
@@ -10,7 +11,7 @@
     </select>
 
     <label for="stationId">Estación destino:</label>
-    <select id="stationId" [(ngModel)]="stationId" name="stationId" required>
+    <select id="stationId" [(ngModel)]="stationId" name="stationId" required [disabled]="devolviendo">
       <option value="" disabled selected>Selecciona estación</option>
       <option *ngFor="let est of estaciones" [value]="est._id">🏢 {{ est.name }}</option>
     </select>
@@ -24,8 +25,8 @@
     No tienes alquileres activos para devolver.
   </div>
 
-  <div *ngIf="confirmMsg" class="confirmacion">{{ confirmMsg }}</div>
-  <div *ngIf="errorMsg" class="confirmacion" style="background:#ffcdd2;color:#b71c1c;">{{ errorMsg }}</div>
+  <div *ngIf="mensaje" class="confirmacion">{{ mensaje }}</div>
+  <div *ngIf="error" class="confirmacion" style="background:#ffcdd2;color:#b71c1c;">{{ error }}</div>
 
   <h3 style="margin-top:2rem;">Alquileres</h3>
   <div class="alquileres-lista">

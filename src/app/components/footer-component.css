@@ -1,17 +1,22 @@
 footer {
-  background: #E8F5E9;
-  color: #1B5E20;
-  padding: 0.5rem 0 0.5rem 0;
-  text-align: center;
-  box-shadow: 0 -2px 16px 0 rgba(27,94,32,0.07);
-  border-radius: 18px 18px 0 0;
-  margin-top: 3rem;
-  font-size: 1.02rem;
   position: fixed;
   left: 0;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
+  min-height: 60px;
+  background: linear-gradient(90deg, #b2f7cc 0%, #7be495 100%);
+  color: #23272f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+  font-size: 1.08rem;
+  font-weight: 500;
+  box-shadow: 0 -2px 12px rgba(44,62,80,0.08);
   z-index: 100;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  letter-spacing: 0.02em;
 }
 .footer-content {
   display: flex;

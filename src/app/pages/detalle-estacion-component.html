@@ -4,7 +4,7 @@
   <p class="estacion-location">📍 {{ station.location }}</p>
   <p><span class="badge">🚲 {{ bikes.length }}/{{ station.capacity }} disponibles</span></p>
 
-  <form (ngSubmit)="alquilar()" class="alquiler-form" *ngIf="bikes.length > 0">
+  <form (ngSubmit)="alquilar()" class="detalle-form" *ngIf="bikes.length > 0">
     <label for="user">Usuario:</label>
     <input id="user" [(ngModel)]="user" name="user" required placeholder="Tu nombre o ID" />
 
@@ -17,7 +17,7 @@
     <label for="horaInicio">Hora de inicio:</label>
     <input id="horaInicio" type="time" [(ngModel)]="horaInicio" name="horaInicio" required />
 
-    <button type="submit" class="btn-alquilar" [disabled]="!selectedBike || !user || !horaInicio">
+    <button type="submit" class="btn-detalle" [disabled]="!selectedBike || !user || !horaInicio">
       Alquilar
     </button>
   </form>
@@ -31,7 +31,7 @@
     <div *ngFor="let bike of bikes" class="bicicleta-card">
       <span class="bike-icon">🚲</span>
       <span class="bike-serial">{{ bike.serial }}</span>
-      <span class="badge" [ngStyle]="{'background': bike.status === 'disponible' ? '#81C784' : '#FFC107'}">{{ bike.status }}</span>
+      <span class="badge" [ngStyle]="{'background': bike.status === 'disponible' ? '#A5D6A7' : '#FFC107'}">{{ bike.status }}</span>
     </div>
     <div *ngIf="bikes.length === 0" style="width:100%;text-align:center;color:#bdbdbd;font-size:1.1rem;margin-top:1.5rem;">No hay bicicletas disponibles.</div>
   </div>

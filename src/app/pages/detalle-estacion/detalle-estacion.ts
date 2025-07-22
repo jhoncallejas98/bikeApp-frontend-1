@@ -22,6 +22,8 @@ export class DetalleEstacion implements OnInit {
   error = '';
   mensaje = '';
   devolucionForm: FormGroup;
+  devolviendo = false;
+  alquilando = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -74,6 +76,8 @@ export class DetalleEstacion implements OnInit {
   alquilarBicicleta(bici: Bike) {
     if (!this.estacion || bici.status !== 'disponible') return;
     this.mensaje = '';
+    this.error = '';
+    this.alquilando = true;
     this.alquilerService.alquilar({
       user: 'usuario', // Aquí deberías obtener el usuario real
       bike: bici._id,
@@ -83,10 +87,12 @@ export class DetalleEstacion implements OnInit {
     }).subscribe({
       next: () => {
         this.mensaje = '¡Bicicleta alquilada con éxito!';
-        this.ngOnInit();
+        this.alquilando = false;
+        setTimeout(() => this.cargarDetalle(), 1200);
       },
       error: (err: any) => {
         this.mensaje = err.error?.msg || 'Error al alquilar bicicleta';
+        this.alquilando = false;
       }
     });
   }
@@ -94,13 +100,18 @@ export class DetalleEstacion implements OnInit {
   devolverBicicleta() {
     const { bookId } = this.devolucionForm.value;
     this.mensaje = '';
+    this.error = '';
+    this.devolviendo = true;
     this.alquilerService.devolver({ alquilerId: bookId, stationId: this.estacion?._id }).subscribe({
       next: () => {
         this.mensaje = '¡Bicicleta devuelta con éxito!';
-        this.ngOnInit();
+        this.devolviendo = false;
+        this.devolucionForm.reset();
+        setTimeout(() => this.cargarDetalle(), 1200);
       },
       error: (err: any) => {
         this.mensaje = err.error?.msg || 'Error al devolver bicicleta';
+        this.devolviendo = false;
       }
     });
   }
