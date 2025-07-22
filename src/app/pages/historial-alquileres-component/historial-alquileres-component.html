@@ -1,41 +1,50 @@
-<div class="historial-container">
-  <h1 class="titulo">Historial de alquileres</h1>
-  <div *ngIf="loading" class="loading">Cargando historial...</div>
-  <div *ngIf="error" class="error">{{ error }}</div>
+<div class="container py-4">
+  <h1 class="mb-4 text-primary text-center">Historial de alquileres</h1>
+  <div *ngIf="loading" class="alert alert-info text-center">Cargando historial...</div>
+  <div *ngIf="error" class="alert alert-danger text-center">{{ error }}</div>
   <div *ngIf="!loading && !error">
-    <div class="alquileres-section">
-      <h2><span class="icon">🟢</span> Alquileres activos</h2>
-      <div *ngIf="alquileresActivos.length === 0" class="empty-msg">
-        <span class="empty-icon">🛑</span>
+    <div class="mb-5">
+      <h2 class="mb-3"><span class="me-2">🟢</span>Alquileres activos</h2>
+      <div *ngIf="alquileresActivos.length === 0" class="alert alert-warning text-center">
+        <span class="display-6">🛑</span>
         <span>No hay alquileres activos.</span>
       </div>
-      <ul *ngIf="alquileresActivos.length > 0" class="alquileres-lista">
-        <li *ngFor="let a of alquileresActivos" class="alquiler-item activo">
-          <span class="alquiler-id badge badge-id">ID: {{ a._id }}</span>
-          <span class="usuario"><span class="icon">👤</span> {{ a.user }}</span>
-          <span class="bici"><span class="icon">🚲</span> {{ getBikeSerial(a.bike) }}</span>
-          <span class="estacion"><span class="icon">📍</span> {{ getStationName(a.stationSalida) }}</span>
-          <span class="hora"><span class="icon">⏰</span> {{ a.horaInicio }}</span>
-          <span class="estado badge badge-green">Activo</span>
-        </li>
-      </ul>
+      <div class="row g-3">
+        <div *ngFor="let a of alquileresActivos" class="col-12 col-md-6 col-lg-4">
+          <div class="card border-success shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">ID: <span class="badge bg-success">{{ a._id }}</span></h5>
+              <p class="mb-1"><span class="me-2">👤</span><b>Usuario:</b> {{ a.user }}</p>
+              <p class="mb-1"><span class="me-2">🚲</span><b>Bicicleta:</b> {{ getBikeSerial(a.bike) }}</p>
+              <p class="mb-1"><span class="me-2">📍</span><b>Estación:</b> {{ getStationName(a.stationSalida) }}</p>
+              <p class="mb-1"><span class="me-2">⏰</span><b>Inicio:</b> {{ a.horaInicio }}</p>
+              <span class="badge bg-success">Activo</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="alquileres-section">
-      <h2><span class="icon">🔔</span> Alquileres finalizados</h2>
-      <div *ngIf="alquileresFinalizados.length === 0" class="empty-msg">
-        <span class="empty-icon">📭</span>
+    <div>
+      <h2 class="mb-3"><span class="me-2">🔔</span>Alquileres finalizados</h2>
+      <div *ngIf="alquileresFinalizados.length === 0" class="alert alert-warning text-center">
+        <span class="display-6">📭</span>
         <span>No hay alquileres finalizados.</span>
       </div>
-      <ul *ngIf="alquileresFinalizados.length > 0" class="alquileres-lista">
-        <li *ngFor="let a of alquileresFinalizados" class="alquiler-item finalizado">
-          <span class="alquiler-id badge badge-id">ID: {{ a._id }}</span>
-          <span class="usuario"><span class="icon">👤</span> {{ a.user }}</span>
-          <span class="bici"><span class="icon">🚲</span> {{ getBikeSerial(a.bike) }}</span>
-          <span class="estacion"><span class="icon">📍</span> {{ getStationName(a.stationSalida) }}</span>
-          <span class="hora"><span class="icon">⏰</span> {{ a.horaInicio }} - {{ a.horaFin || '---' }}</span>
-          <span class="estado badge badge-gold">Finalizado</span>
-        </li>
-      </ul>
+      <div class="row g-3">
+        <div *ngFor="let a of alquileresFinalizados" class="col-12 col-md-6 col-lg-4">
+          <div class="card border-warning shadow-sm h-100">
+            <div class="card-body">
+              <h5 class="card-title mb-2">ID: <span class="badge bg-warning text-dark">{{ a._id }}</span></h5>
+              <p class="mb-1"><span class="me-2">👤</span><b>Usuario:</b> {{ a.user }}</p>
+              <p class="mb-1"><span class="me-2">🚲</span><b>Bicicleta:</b> {{ getBikeSerial(a.bike) }}</p>
+              <p class="mb-1"><span class="me-2">📍</span><b>Estación:</b> {{ getStationName(a.stationSalida) }}</p>
+              <p class="mb-1"><span class="me-2">⏰</span><b>Inicio:</b> {{ a.horaInicio }}</p>
+              <p class="mb-1"><span class="me-2">⏰</span><b>Fin:</b> {{ a.horaFin || '---' }}</p>
+              <span class="badge bg-warning text-dark">Finalizado</span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

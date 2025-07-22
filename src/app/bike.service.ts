@@ -11,28 +11,12 @@ export interface Bike {
 }
 
 @Injectable({ providedIn: 'root' })
-export class BikeService {
-  private apiUrl = '/api/bike';
-
+export class BicicletaService {
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<Bike[]> {
-    return this.http.get<Bike[]>(this.apiUrl);
-  }
-
-  getById(id: string): Observable<Bike> {
-    return this.http.get<Bike>(`${this.apiUrl}/${id}`);
-  }
-
-  create(bike: Partial<Bike>): Observable<Bike> {
-    return this.http.post<Bike>(this.apiUrl, bike);
-  }
-
-  update(id: string, bike: Partial<Bike>): Observable<Bike> {
-    return this.http.put<Bike>(`${this.apiUrl}/${id}`, bike);
-  }
-
-  delete(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  getAll(estado?: string): Observable<Bike[]> {
+    let url = '/bicicletas';
+    if (estado) url += `?estado=${estado}`;
+    return this.http.get<Bike[]>(url);
   }
 } 

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { StationService, Station } from '../../station.service';
-import { BikeService, Bike } from '../../bike.service';
-import { BookService, Book } from '../../book.service';
+import { EstacionService, Station } from '../../station.service';
+import { BicicletaService, Bike } from '../../bike.service';
+import { AlquilerService, Book } from '../../book.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
@@ -24,9 +24,9 @@ export class DetalleEstacion implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private stationService: StationService,
-    private bikeService: BikeService,
-    private bookService: BookService,
+    private estacionService: EstacionService,
+    private bicicletaService: BicicletaService,
+    private alquilerService: AlquilerService,
     private fb: FormBuilder
   ) {
     this.alquilerForm = this.fb.group({
@@ -41,21 +41,21 @@ export class DetalleEstacion implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.queryParamMap.get('id');
     if (id) {
-      this.stationService.getById(id).subscribe({
-        next: (estacion) => {
+      this.estacionService.getById(id).subscribe({
+        next: (estacion: Station) => {
           this.estacion = estacion;
-          this.bikeService.getAll().subscribe({
-            next: (bikes) => {
-              this.bicicletas = bikes.filter(b => b.status === 'disponible' && b.availableBikes > 0);
+          this.bicicletaService.getAll('disponible').subscribe({
+            next: (bikes: Bike[]) => {
+              this.bicicletas = bikes.filter((b: Bike) => b.status === 'disponible' && b.availableBikes > 0);
               this.loading = false;
             },
-            error: () => {
+            error: (err: any) => {
               this.error = 'Error al cargar bicicletas';
               this.loading = false;
             }
           });
         },
-        error: () => {
+        error: (err: any) => {
           this.error = 'Error al cargar estación';
           this.loading = false;
         }
@@ -70,7 +70,7 @@ export class DetalleEstacion implements OnInit {
     if (!this.estacion) return;
     const { user, bikeId } = this.alquilerForm.value;
     this.mensaje = '';
-    this.bookService.create({
+    this.alquilerService.alquilar({
       user,
       bike: bikeId,
       stationSalida: this.estacion._id,
@@ -81,7 +81,7 @@ export class DetalleEstacion implements OnInit {
         this.mensaje = '¡Bicicleta alquilada con éxito!';
         this.ngOnInit();
       },
-      error: (err) => {
+      error: (err: any) => {
         this.mensaje = err.error?.msg || 'Error al alquilar bicicleta';
       }
     });
@@ -90,15 +90,12 @@ export class DetalleEstacion implements OnInit {
   devolverBicicleta() {
     const { bookId } = this.devolucionForm.value;
     this.mensaje = '';
-    this.bookService.update(bookId, {
-      activo: false,
-      horaFin: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
-    }).subscribe({
+    this.alquilerService.devolver({ alquilerId: bookId, stationId: this.estacion?._id }).subscribe({
       next: () => {
         this.mensaje = '¡Bicicleta devuelta con éxito!';
         this.ngOnInit();
       },
-      error: (err) => {
+      error: (err: any) => {
         this.mensaje = err.error?.msg || 'Error al devolver bicicleta';
       }
     });

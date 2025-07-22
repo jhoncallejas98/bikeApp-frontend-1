@@ -1,0 +1,45 @@
+.card-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.badge {
+  font-size: 1.05rem;
+  padding: 0.5em 0.8em;
+  border-radius: 0.7em;
+}
+
+.card {
+  min-height: 180px;
+  border-radius: 1.2em;
+}
+
+.spinner-border {
+  vertical-align: middle;
+}
+
+.display-6 {
+  font-size: 2.2rem;
+}
+
+form .form-label {
+  font-weight: 500;
+}
+
+form .form-control.is-invalid {
+  border-color: #dc3545;
+}
+
+form .invalid-feedback {
+  display: block;
+}
+
+.card-title.mb-3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.btn-outline-primary.btn-sm, .btn-outline-danger.btn-sm {
+  padding: 0.25em 0.7em;
+  font-size: 0.95rem;
+} 

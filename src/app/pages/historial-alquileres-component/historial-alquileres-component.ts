@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { BookService, Book } from '../../book.service';
+import { AlquilerService, Book } from '../../book.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -14,16 +14,16 @@ export class HistorialAlquileresComponent implements OnInit {
   loading = true;
   error = '';
 
-  constructor(private bookService: BookService) {}
+  constructor(private alquilerService: AlquilerService) {}
 
   ngOnInit(): void {
-    this.bookService.getAll().subscribe({
-      next: (data) => {
-        this.alquileresActivos = data.filter(a => a.activo);
-        this.alquileresFinalizados = data.filter(a => !a.activo);
+    this.alquilerService.getAll().subscribe({
+      next: (data: Book[]) => {
+        this.alquileresActivos = data.filter((a: Book) => a.activo);
+        this.alquileresFinalizados = data.filter((a: Book) => !a.activo);
         this.loading = false;
       },
-      error: () => {
+      error: (err: any) => {
         this.error = 'Error al cargar alquileres';
         this.loading = false;
       }
