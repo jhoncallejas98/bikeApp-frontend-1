@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { AlquilerService, Book } from '../../book.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-historial-alquileres-component',
@@ -14,9 +17,15 @@ export class HistorialAlquileresComponent implements OnInit {
   loading = true;
   error = '';
 
-  constructor(private alquilerService: AlquilerService) {}
+  constructor(private alquilerService: AlquilerService, private router: Router) {}
 
   ngOnInit(): void {
+    this.cargarAlquileres();
+  }
+
+  cargarAlquileres(): void {
+    this.loading = true;
+    this.error = '';
     this.alquilerService.getAll().subscribe({
       next: (data: Book[]) => {
         this.alquileresActivos = data.filter((a: Book) => a.activo);

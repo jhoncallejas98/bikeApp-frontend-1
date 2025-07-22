@@ -1,6 +1,5 @@
 <div class="container py-4">
   <h1 class="mb-4 text-primary text-center">Historial de alquileres</h1>
-  <div *ngIf="loading" class="alert alert-info text-center">Cargando historial...</div>
   <div *ngIf="error" class="alert alert-danger text-center">{{ error }}</div>
   <div *ngIf="!loading && !error">
     <div class="mb-5">

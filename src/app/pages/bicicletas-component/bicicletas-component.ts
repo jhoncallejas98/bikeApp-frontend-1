@@ -15,7 +15,6 @@ export class BicicletasComponent implements OnInit {
   loading = true;
   error = '';
   mensaje = '';
-  agregarForm: FormGroup;
   creando = false;
   editando = false;
   editId: string | null = null;
@@ -26,14 +25,7 @@ export class BicicletasComponent implements OnInit {
     { value: 'en mantenimiento', label: 'En mantenimiento' }
   ];
 
-  constructor(private bicicletaService: BicicletaService, private fb: FormBuilder) {
-    this.agregarForm = this.fb.group({
-      serial: ['', Validators.required],
-      status: ['disponible', Validators.required],
-      capacity: [1, [Validators.required, Validators.min(1)]],
-      availableBikes: [0, [Validators.required, Validators.min(0)]]
-    });
-  }
+  constructor(private bicicletaService: BicicletaService) {}
 
   ngOnInit(): void {
     this.cargarBicicletas();
@@ -59,7 +51,7 @@ export class BicicletasComponent implements OnInit {
   }
 
   agregarBicicleta(): void {
-    if (this.agregarForm.invalid) return;
+    if (this.creando) return;
     this.creando = true;
     this.mensaje = '';
     if (this.editando && this.editId) {
@@ -72,19 +64,21 @@ export class BicicletasComponent implements OnInit {
   editarBicicleta(bici: Bike): void {
     this.editando = true;
     this.editId = bici._id || null;
-    this.agregarForm.setValue({
-      serial: bici.serial,
-      status: bici.status,
-      capacity: bici.capacity,
-      availableBikes: bici.availableBikes
-    });
+    // No hay formulario para editar, solo se actualiza el estado
+    // this.agregarForm.setValue({
+    //   serial: bici.serial,
+    //   status: bici.status,
+    //   capacity: bici.capacity,
+    //   availableBikes: bici.availableBikes
+    // });
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
   cancelarEdicion(): void {
     this.editando = false;
     this.editId = null;
-    this.agregarForm.reset({ status: 'disponible', capacity: 1, availableBikes: 0 });
+    // No hay formulario para resetear, solo se actualiza el estado
+    // this.agregarForm.reset({ status: 'disponible', capacity: 1, availableBikes: 0 });
   }
 
   eliminarBicicleta(bici: Bike): void {

@@ -24,34 +24,12 @@
           <li *ngFor="let bici of bicicletas" class="list-group-item d-flex justify-content-between align-items-center">
             <span><span class="me-2">#</span>{{ bici.serial }}</span>
             <span class="badge bg-success">{{ bici.status }}</span>
+            <button class="btn btn-success btn-sm ms-2" (click)="alquilarBicicleta(bici)" [disabled]="bici.status !== 'disponible'">Alquilar</button>
           </li>
         </ul>
       </div>
     </div>
     <div class="row g-4">
-      <div class="col-md-6">
-        <div class="card shadow-sm">
-          <div class="card-body">
-            <h4 class="card-title mb-3"><span class="me-2">🛒</span>Alquilar bicicleta</h4>
-            <form [formGroup]="alquilerForm" (ngSubmit)="alquilarBicicleta()" novalidate>
-              <div class="mb-3">
-                <label for="user" class="form-label">Usuario *</label>
-                <input id="user" formControlName="user" class="form-control" [class.is-invalid]="alquilerForm.get('user')?.invalid && alquilerForm.get('user')?.touched">
-                <div class="invalid-feedback" *ngIf="alquilerForm.get('user')?.invalid && alquilerForm.get('user')?.touched">Usuario requerido</div>
-              </div>
-              <div class="mb-3">
-                <label for="bikeId" class="form-label">Bicicleta *</label>
-                <select id="bikeId" formControlName="bikeId" class="form-select" [class.is-invalid]="alquilerForm.get('bikeId')?.invalid && alquilerForm.get('bikeId')?.touched">
-                  <option value="" disabled selected>Selecciona una bicicleta</option>
-                  <option *ngFor="let bici of bicicletas" [value]="bici._id">{{ bici.serial }}</option>
-                </select>
-                <div class="invalid-feedback" *ngIf="alquilerForm.get('bikeId')?.invalid && alquilerForm.get('bikeId')?.touched">Selecciona una bicicleta</div>
-              </div>
-              <button class="btn btn-success w-100" type="submit" [disabled]="alquilerForm.invalid">Alquilar ahora</button>
-            </form>
-          </div>
-        </div>
-      </div>
       <div class="col-md-6">
         <div class="card shadow-sm">
           <div class="card-body">
