@@ -1,0 +1,38 @@
+<h1>Detalle de Estación</h1>
+<div class="detalle-container" *ngIf="station">
+  <h2>{{ station.name }}</h2>
+  <p class="estacion-location">📍 {{ station.location }}</p>
+  <p><span class="badge">🚲 {{ bikes.length }}/{{ station.capacity }} disponibles</span></p>
+
+  <form (ngSubmit)="alquilar()" class="alquiler-form" *ngIf="bikes.length > 0">
+    <label for="user">Usuario:</label>
+    <input id="user" [(ngModel)]="user" name="user" required placeholder="Tu nombre o ID" />
+
+    <label for="bike">Bicicleta:</label>
+    <select id="bike" [(ngModel)]="selectedBike" name="bike" required>
+      <option value="" disabled selected>Selecciona una bicicleta</option>
+      <option *ngFor="let bike of bikes" [value]="bike._id">🔑 {{ bike.serial }}</option>
+    </select>
+
+    <label for="horaInicio">Hora de inicio:</label>
+    <input id="horaInicio" type="time" [(ngModel)]="horaInicio" name="horaInicio" required />
+
+    <button type="submit" class="btn-alquilar" [disabled]="!selectedBike || !user || !horaInicio">
+      Alquilar
+    </button>
+  </form>
+  <div *ngIf="bikes.length === 0" class="confirmacion" style="background:#ffcdd2;color:#b71c1c;">No hay bicicletas disponibles para reservar en esta estación.</div>
+
+  <div *ngIf="confirmMsg" class="confirmacion animate-fadein">{{ confirmMsg }}</div>
+  <div *ngIf="errorMsg" class="confirmacion animate-fadein" style="background:#ffcdd2;color:#b71c1c;">{{ errorMsg }}</div>
+
+  <h3 style="margin-top:2rem;">Bicicletas disponibles</h3>
+  <div class="bicicletas-lista">
+    <div *ngFor="let bike of bikes" class="bicicleta-card">
+      <span class="bike-icon">🚲</span>
+      <span class="bike-serial">{{ bike.serial }}</span>
+      <span class="badge" [ngStyle]="{'background': bike.status === 'disponible' ? '#81C784' : '#FFC107'}">{{ bike.status }}</span>
+    </div>
+    <div *ngIf="bikes.length === 0" style="width:100%;text-align:center;color:#bdbdbd;font-size:1.1rem;margin-top:1.5rem;">No hay bicicletas disponibles.</div>
+  </div>
+</div>

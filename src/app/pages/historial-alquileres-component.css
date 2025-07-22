@@ -1,0 +1,136 @@
+body, :host {
+  background: #F5F5F5;
+  color: #212121;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+h1 {
+  color: #4CAF50;
+  margin-bottom: 1.5rem;
+}
+.historial-lista {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px 0 rgba(27, 94, 32, 0.18);
+  padding: 2.2rem 2.2rem 1.5rem 2.2rem;
+  margin: 2rem 0;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.alquileres-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+}
+.alquiler-card {
+  background: #1B5E20;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px 0 #1B5E2022;
+  padding: 1.1rem 1.5rem;
+  min-width: 220px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  font-size: 1.04rem;
+  font-weight: 500;
+  transition: box-shadow 0.18s, transform 0.18s;
+  color: #fff;
+}
+.alquiler-card:hover {
+  box-shadow: 0 4px 16px 0 #1B5E2044;
+  transform: translateY(-2px) scale(1.01);
+}
+.alquiler-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.bike-icon {
+  font-size: 1.3rem;
+  color: #FFC107;
+}
+.badge {
+  font-size: 0.97rem;
+  font-weight: 600;
+  border-radius: 50px;
+  padding: 0.3em 1.1em;
+  display: inline-block;
+  letter-spacing: 0.2px;
+  box-shadow: 0 2px 8px 0 #1B5E2022;
+}
+.badge-activo {
+  background: #FFC107;
+  color: #1B5E20;
+}
+.badge-finalizado {
+  background: #232a23;
+  color: #FFC107;
+}
+.alquiler-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  margin-left: 2.1rem;
+}
+.alquiler-station {
+  color: #FFC107;
+  font-size: 1.01rem;
+}
+.alquiler-fechas {
+  color: #fff;
+  font-size: 0.98rem;
+}
+.devolver-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin: 1.5rem 0 1.2rem 0;
+}
+.devolver-form label {
+  font-weight: 600;
+  color: #FFC107;
+  margin-bottom: 0.2rem;
+}
+.devolver-form input, .devolver-form select {
+  padding: 0.5rem 0.9rem;
+  border-radius: 7px;
+  border: 1.2px solid #e0e0e0;
+  font-size: 1.05rem;
+  background: #fff;
+  margin-bottom: 0.2rem;
+  outline: none;
+  color: #212121;
+  transition: border 0.18s;
+}
+.devolver-form input:focus, .devolver-form select:focus {
+  border: 1.5px solid #FFC107;
+}
+.btn-devolver {
+  background: #FFC107;
+  color: #1B5E20;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1.3rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s;
+  box-shadow: 0 2px 8px 0 #FFC10722;
+}
+.btn-devolver:hover, .btn-devolver:focus {
+  background: #FFD54F;
+  color: #1B5E20;
+  box-shadow: 0 4px 16px 0 #FFC10744;
+}
+.confirmacion {
+  background: #fff;
+  color: #1B5E20;
+  border-radius: 8px;
+  padding: 0.7rem 1.2rem;
+  margin-top: 1rem;
+  font-weight: 500;
+  text-align: center;
+  font-size: 1.08rem;
+}

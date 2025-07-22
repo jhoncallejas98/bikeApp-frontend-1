@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  background: #F5F5F5;
+  color: #212121;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+main {
+  max-width: 900px;
+  margin: 2.5rem auto 0 auto;
+  padding: 0 1.2rem;
+}
+
+h1, h2, h3 {
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  margin-bottom: 1.2rem;
+}
+
+input, select, button {
+  font-family: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: #F5F5F5;
+}
+::-webkit-scrollbar-thumb {
+  background: #81C784;
+  border-radius: 8px;
+}

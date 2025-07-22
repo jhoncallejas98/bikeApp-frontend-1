@@ -1,0 +1,47 @@
+<h1>Historial de Alquileres</h1>
+<div class="historial-lista">
+  <form (ngSubmit)="devolver()" class="devolver-form" *ngIf="alquileresActivos.length > 0">
+    <label for="alquilerId">Bicicleta en uso:</label>
+    <select id="alquilerId" [(ngModel)]="alquilerId" name="alquilerId" required>
+      <option value="" disabled selected>Selecciona una bicicleta en uso</option>
+      <ng-container *ngFor="let alq of alquileresActivos">
+        <option [value]="alq._id">{{ getBikeSerial(alq.bike) }}</option>
+      </ng-container>
+    </select>
+
+    <label for="stationId">Estación destino:</label>
+    <select id="stationId" [(ngModel)]="stationId" name="stationId" required>
+      <option value="" disabled selected>Selecciona estación</option>
+      <option *ngFor="let est of estaciones" [value]="est._id">🏢 {{ est.name }}</option>
+    </select>
+
+    <button type="submit" class="btn-devolver" [disabled]="!alquilerId || !stationId || devolviendo">
+      <span *ngIf="!devolviendo">Devolver bicicleta</span>
+      <span *ngIf="devolviendo">Procesando...</span>
+    </button>
+  </form>
+  <div *ngIf="alquileresActivos.length === 0" class="confirmacion" style="background:#ffcdd2;color:#b71c1c;">
+    No tienes alquileres activos para devolver.
+  </div>
+
+  <div *ngIf="confirmMsg" class="confirmacion">{{ confirmMsg }}</div>
+  <div *ngIf="errorMsg" class="confirmacion" style="background:#ffcdd2;color:#b71c1c;">{{ errorMsg }}</div>
+
+  <h3 style="margin-top:2rem;">Alquileres</h3>
+  <div class="alquileres-lista">
+    <div *ngFor="let alq of alquileres" class="alquiler-card">
+      <div class="alquiler-card-header">
+        <span class="bike-icon">🚲</span>
+        <b>{{ getBikeSerial(alq.bike) }}</b>
+        <span class="badge" [ngClass]="alq.activo ? 'badge-activo' : 'badge-finalizado'">
+          {{ alq.activo ? 'Activo' : 'Finalizado' }}
+        </span>
+      </div>
+      <div class="alquiler-card-body">
+        <span class="alquiler-station">🏢 {{ getStationName(alq.stationSalida) }}</span>
+        <span class="alquiler-fechas">⏰ {{ alq.fechaInicio | date:'short' }} - {{ alq.horaInicio }}<span *ngIf="alq.fechaFin"> | Fin: {{ alq.fechaFin | date:'short' }}</span></span>
+      </div>
+    </div>
+    <div *ngIf="alquileres.length === 0" style="width:100%;text-align:center;color:#bdbdbd;font-size:1.1rem;margin-top:1.5rem;">No hay alquileres registrados.</div>
+  </div>
+</div>
