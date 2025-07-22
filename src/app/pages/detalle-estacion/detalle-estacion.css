@@ -1,0 +1,200 @@
+.detalle-container {
+  background: #FAFAFA;
+  color: #212121;
+  min-height: 100vh;
+  padding: 2rem 0 3rem 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.titulo {
+  color: #212121;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.estacion-info {
+  background: #fff;
+  border: 2px solid #A5D6A7;
+  border-radius: 1rem;
+  padding: 1.5rem 2rem;
+  margin: 0 auto 2rem auto;
+  max-width: 400px;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.07);
+}
+
+.dorado {
+  color: #E0B548;
+  font-weight: bold;
+}
+
+.bicis-section {
+  margin: 2rem auto;
+  max-width: 500px;
+  background: #fff;
+  border-radius: 1rem;
+  border: 1.5px solid #A5D6A7;
+  padding: 1.2rem 2rem;
+}
+
+.bicis-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bici-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #A5D6A7;
+}
+
+.bici-serial {
+  font-weight: 500;
+  color: #2E7D32;
+}
+
+.bici-status {
+  font-size: 0.95rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.5rem;
+  background: #A5D6A7;
+  color: #212121;
+  margin-left: 1rem;
+}
+
+.icon {
+  margin-right: 0.3rem;
+  font-size: 1.1em;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.7rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  background: #A5D6A7;
+  color: #212121;
+  transition: background 0.2s, color 0.2s;
+}
+
+.badge-green {
+  background: #2E7D32;
+  color: #fff;
+}
+
+.badge-red {
+  background: #c62828;
+  color: #fff;
+}
+
+.empty-msg {
+  text-align: center;
+  color: #A5D6A7;
+  font-size: 1.1rem;
+  margin: 2rem 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.empty-icon {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+.form-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.form-alquiler, .form-devolucion {
+  background: #fff;
+  border-radius: 1rem;
+  border: 1.5px solid #A5D6A7;
+  padding: 1.2rem 2rem;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.07);
+}
+
+.form-alquiler label, .form-devolucion label {
+  font-size: 1rem;
+  color: #2E7D32;
+  font-weight: 500;
+  margin-bottom: 0.2rem;
+}
+
+.input {
+  padding: 0.6rem 1rem;
+  border: 1.5px solid #A5D6A7;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #212121;
+  background: #FAFAFA;
+}
+
+.btn-verde {
+  background: #2E7D32;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-verde:hover {
+  background: #256025;
+}
+
+.btn-dorado {
+  background: #E0B548;
+  color: #212121;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-dorado:hover {
+  background: #cfa32d;
+}
+
+.mensaje {
+  margin: 2rem auto 0 auto;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #2E7D32;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+.loading, .error {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #c62828;
+}

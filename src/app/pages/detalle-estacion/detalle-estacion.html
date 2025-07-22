@@ -1,1 +1,52 @@
-<p>detalle-estacion works!</p>
+<div class="detalle-container">
+  <h1 class="titulo">Detalle de estación</h1>
+  <div *ngIf="loading" class="loading">Cargando datos...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="estacion && !loading">
+    <div class="estacion-info">
+      <h2><span class="icon">📍</span> {{ estacion.name }}</h2>
+      <p><span class="icon">📌</span> <b>Ubicación:</b> {{ estacion.location }}</p>
+      <p><span class="icon">🅿️</span> <b>Capacidad:</b> {{ estacion.capacity }}</p>
+      <p><span class="icon">🚲</span> <b>Bicicletas disponibles:</b>
+        <span class="badge" [ngClass]="{'badge-green': estacion.availableBikes > 0, 'badge-red': estacion.availableBikes === 0}">
+          {{ estacion.availableBikes }}
+        </span>
+      </p>
+    </div>
+    <div class="bicis-section">
+      <h3><span class="icon">🚲</span> Bicicletas disponibles</h3>
+      <div *ngIf="bicicletas.length === 0" class="empty-msg">
+        <span class="empty-icon">🚳</span>
+        <span>No hay bicicletas disponibles en esta estación.</span>
+      </div>
+      <ul *ngIf="bicicletas.length > 0" class="bicis-lista">
+        <li *ngFor="let bici of bicicletas" class="bici-item">
+          <span class="bici-serial"><span class="icon">#</span>{{ bici.serial }}</span>
+          <span class="bici-status badge badge-green">{{ bici.status }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="form-section">
+      <form [formGroup]="alquilerForm" (ngSubmit)="alquilarBicicleta()" class="form-alquiler">
+        <h3><span class="icon">🛒</span> Alquilar bicicleta</h3>
+        <label for="user">Usuario</label>
+        <input id="user" formControlName="user" placeholder="Usuario" required class="input" />
+        <label for="bikeId">Bicicleta</label>
+        <select id="bikeId" formControlName="bikeId" required class="input">
+          <option value="" disabled selected>Selecciona una bicicleta</option>
+          <option *ngFor="let bici of bicicletas" [value]="bici._id">{{ bici.serial }}</option>
+        </select>
+        <button class="btn-verde" type="submit">Alquilar ahora</button>
+      </form>
+      <form [formGroup]="devolucionForm" (ngSubmit)="devolverBicicleta()" class="form-devolucion">
+        <h3><span class="icon">🔄</span> Devolver bicicleta</h3>
+        <label for="bookId">ID de alquiler</label>
+        <input id="bookId" formControlName="bookId" placeholder="ID de alquiler" required class="input" />
+        <button class="btn-dorado" type="submit">Devolver</button>
+      </form>
+    </div>
+    <div *ngIf="mensaje" class="mensaje">
+      <span class="icon">✅</span> {{ mensaje }}
+    </div>
+  </div>
+</div>

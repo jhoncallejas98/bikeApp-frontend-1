@@ -1,1 +1,41 @@
-<p>historial-alquileres-component works!</p>
+<div class="historial-container">
+  <h1 class="titulo">Historial de alquileres</h1>
+  <div *ngIf="loading" class="loading">Cargando historial...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!loading && !error">
+    <div class="alquileres-section">
+      <h2><span class="icon">🟢</span> Alquileres activos</h2>
+      <div *ngIf="alquileresActivos.length === 0" class="empty-msg">
+        <span class="empty-icon">🛑</span>
+        <span>No hay alquileres activos.</span>
+      </div>
+      <ul *ngIf="alquileresActivos.length > 0" class="alquileres-lista">
+        <li *ngFor="let a of alquileresActivos" class="alquiler-item activo">
+          <span class="alquiler-id badge badge-id">ID: {{ a._id }}</span>
+          <span class="usuario"><span class="icon">👤</span> {{ a.user }}</span>
+          <span class="bici"><span class="icon">🚲</span> {{ getBikeSerial(a.bike) }}</span>
+          <span class="estacion"><span class="icon">📍</span> {{ getStationName(a.stationSalida) }}</span>
+          <span class="hora"><span class="icon">⏰</span> {{ a.horaInicio }}</span>
+          <span class="estado badge badge-green">Activo</span>
+        </li>
+      </ul>
+    </div>
+    <div class="alquileres-section">
+      <h2><span class="icon">🔔</span> Alquileres finalizados</h2>
+      <div *ngIf="alquileresFinalizados.length === 0" class="empty-msg">
+        <span class="empty-icon">📭</span>
+        <span>No hay alquileres finalizados.</span>
+      </div>
+      <ul *ngIf="alquileresFinalizados.length > 0" class="alquileres-lista">
+        <li *ngFor="let a of alquileresFinalizados" class="alquiler-item finalizado">
+          <span class="alquiler-id badge badge-id">ID: {{ a._id }}</span>
+          <span class="usuario"><span class="icon">👤</span> {{ a.user }}</span>
+          <span class="bici"><span class="icon">🚲</span> {{ getBikeSerial(a.bike) }}</span>
+          <span class="estacion"><span class="icon">📍</span> {{ getStationName(a.stationSalida) }}</span>
+          <span class="hora"><span class="icon">⏰</span> {{ a.horaInicio }} - {{ a.horaFin || '---' }}</span>
+          <span class="estado badge badge-gold">Finalizado</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

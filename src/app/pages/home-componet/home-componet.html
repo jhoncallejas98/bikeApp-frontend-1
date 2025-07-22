@@ -1,1 +1,26 @@
-<p>home-componet works!</p>
+<div class="home-container">
+  <h1 class="titulo">Estaciones disponibles</h1>
+  <div *ngIf="loading" class="loading">Cargando estaciones...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+  <div *ngIf="!loading && !error && estaciones.length === 0" class="empty-msg">
+    <span class="empty-icon">🚲</span>
+    <span>No hay estaciones registradas aún.</span>
+  </div>
+  <div class="estaciones-lista">
+    <div *ngFor="let estacion of estaciones" class="estacion-card">
+      <div class="estacion-header">
+        <span class="estacion-nombre"><span class="icon">📍</span> {{ estacion.name }}</span>
+        <span class="estacion-ubicacion">{{ estacion.location }}</span>
+      </div>
+      <div class="estacion-detalle">
+        <span class="estacion-capacidad"><span class="icon">🅿️</span> Capacidad: <b>{{ estacion.capacity }}</b></span>
+        <span class="estacion-disponibles">
+          <span class="badge" [ngClass]="{'badge-green': estacion.availableBikes > 0, 'badge-red': estacion.availableBikes === 0}">
+            {{ estacion.availableBikes }} disponibles
+          </span>
+        </span>
+      </div>
+      <button class="btn-verde" (click)="verDetalle(estacion)">Ver detalle</button>
+    </div>
+  </div>
+</div>

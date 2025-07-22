@@ -1,0 +1,133 @@
+.historial-container {
+  background: #FAFAFA;
+  color: #212121;
+  min-height: 100vh;
+  padding: 2rem 0 3rem 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.titulo {
+  color: #212121;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.icon {
+  margin-right: 0.3rem;
+  font-size: 1.1em;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.7rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  background: #A5D6A7;
+  color: #212121;
+  transition: background 0.2s, color 0.2s;
+}
+
+.badge-green {
+  background: #2E7D32;
+  color: #fff;
+}
+
+.badge-gold {
+  background: #E0B548;
+  color: #212121;
+}
+
+.badge-id {
+  background: #A5D6A7;
+  color: #2E7D32;
+  font-size: 0.92rem;
+  margin-right: 0.7rem;
+  margin-left: 0;
+}
+
+.empty-msg {
+  text-align: center;
+  color: #A5D6A7;
+  font-size: 1.1rem;
+  margin: 2rem 0 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.empty-icon {
+  font-size: 2rem;
+  margin-bottom: 0.2rem;
+}
+
+.alquileres-section {
+  background: #fff;
+  border-radius: 1rem;
+  border: 2px solid #A5D6A7;
+  margin: 2rem auto;
+  max-width: 600px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.07);
+  margin-bottom: 2.5rem;
+}
+
+.alquileres-section:last-child {
+  margin-bottom: 0;
+}
+
+.alquileres-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.alquiler-item {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0.7rem 0;
+  border-bottom: 1px solid #A5D6A7;
+}
+
+.alquiler-item:last-child {
+  border-bottom: none;
+}
+
+.usuario, .bici, .estacion, .hora {
+  font-size: 1rem;
+  color: #212121;
+}
+
+.estado {
+  font-weight: bold;
+  border-radius: 0.5rem;
+  padding: 0.2rem 0.8rem;
+  font-size: 0.95rem;
+}
+
+.estado.activo {
+  background: #2E7D32;
+  color: #fff;
+}
+
+.estado.finalizado {
+  background: #E0B548;
+  color: #212121;
+}
+
+.loading, .error {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #c62828;
+}

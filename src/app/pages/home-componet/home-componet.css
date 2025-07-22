@@ -1,0 +1,146 @@
+body, .home-container {
+  background: #FAFAFA;
+  color: #212121;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.titulo {
+  color: #212121;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+}
+
+.estaciones-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.estacion-card {
+  background: #fff;
+  border: 2px solid #A5D6A7;
+  border-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(46, 125, 50, 0.07);
+  padding: 1.5rem 2rem;
+  min-width: 260px;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: box-shadow 0.25s, transform 0.18s;
+}
+
+.estacion-card:hover {
+  box-shadow: 0 8px 24px rgba(224, 181, 72, 0.18);
+  border-color: #E0B548;
+  transform: translateY(-4px) scale(1.03);
+}
+
+.estacion-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.estacion-nombre {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #2E7D32;
+}
+
+.estacion-ubicacion {
+  font-size: 1rem;
+  color: #A5D6A7;
+  font-style: italic;
+}
+
+.estacion-detalle {
+  margin-bottom: 1rem;
+  color: #212121;
+}
+
+.estacion-capacidad {
+  margin-right: 1.5rem;
+}
+
+.estacion-disponibles b {
+  color: #E0B548;
+}
+
+.btn-verde {
+  background: #2E7D32;
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: auto;
+}
+
+.btn-verde:hover {
+  background: #256025;
+}
+
+.loading, .error {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 1.1rem;
+}
+
+.error {
+  color: #c62828;
+}
+
+.icon {
+  margin-right: 0.3rem;
+  font-size: 1.1em;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.7rem;
+  font-size: 0.98rem;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  background: #A5D6A7;
+  color: #212121;
+  transition: background 0.2s, color 0.2s;
+}
+
+.badge-green {
+  background: #2E7D32;
+  color: #fff;
+}
+
+.badge-red {
+  background: #c62828;
+  color: #fff;
+}
+
+.empty-msg {
+  text-align: center;
+  color: #A5D6A7;
+  font-size: 1.2rem;
+  margin: 3rem 0 2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.empty-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.2rem;
+}
