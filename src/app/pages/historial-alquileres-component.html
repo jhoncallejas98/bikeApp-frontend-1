@@ -25,8 +25,8 @@
     No tienes alquileres activos para devolver.
   </div>
 
-  <div *ngIf="mensaje" class="confirmacion">{{ mensaje }}</div>
-  <div *ngIf="error" class="confirmacion" style="background:#ffcdd2;color:#b71c1c;">{{ error }}</div>
+  <div *ngIf="confirmMsg" class="confirmacion">{{ confirmMsg }}</div>
+  <div *ngIf="errorMsg" class="confirmacion" style="background:#ffcdd2;color:#b71c1c;">{{ errorMsg }}</div>
 
   <h3 style="margin-top:2rem;">Alquileres</h3>
   <div class="alquileres-lista">

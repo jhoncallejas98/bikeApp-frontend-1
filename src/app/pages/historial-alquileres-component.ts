@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf, DatePipe, CommonModule } from '@angular/common';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { NgFor, NgIf, CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { BookService } from '../services/book.service';
 import { StationService } from '../services/station.service';
@@ -9,7 +9,7 @@ import { Station } from '../models/station.model';
 @Component({
   selector: 'app-historial-alquileres',
   standalone: true,
-  imports: [NgFor, NgIf, DatePipe, FormsModule, CommonModule],
+  imports: [NgFor, NgIf, FormsModule, CommonModule],
   templateUrl: './historial-alquileres-component.html',
   styleUrls: ['./historial-alquileres-component.css']
 })
@@ -18,60 +18,69 @@ export class HistorialAlquileresComponent implements OnInit {
   estaciones: Station[] = [];
   alquilerId: string = '';
   stationId: string = '';
-  mensaje: string = '';
-  error: string = '';
+  confirmMsg: string = '';
+  errorMsg: string = '';
   devolviendo: boolean = false;
   loading: boolean = true;
 
-  get alquileresActivos(): Book[] {
-    return this.alquileres.filter(a => a.activo === true);
-  }
-
   constructor(
     private bookService: BookService,
-    private stationService: StationService
+    private stationService: StationService,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
     this.cargarAlquileres();
-    this.stationService.getStations().subscribe((estaciones: Station[]) => this.estaciones = estaciones);
+    this.stationService.getStations().subscribe({
+      next: (estaciones) => {
+        this.estaciones = estaciones;
+        this.cdr.detectChanges();
+      }
+    });
   }
 
   cargarAlquileres() {
     this.loading = true;
     this.bookService.getBooks().subscribe({
       next: (alqs: Book[]) => {
-        this.alquileres = [...alqs];
+        this.alquileres = alqs;
         this.loading = false;
+        this.cdr.detectChanges();
       },
-      error: (err) => {
+      error: () => {
         this.loading = false;
-        this.error = 'Error al cargar los alquileres.';
+        this.errorMsg = 'Error al cargar los alquileres.';
+        this.cdr.detectChanges();
       }
     });
   }
 
+  get alquileresActivos(): Book[] {
+    return this.alquileres.filter(a => a.activo === true);
+  }
+
   devolver() {
-    this.mensaje = '';
-    this.error = '';
+    this.confirmMsg = '';
+    this.errorMsg = '';
     if (!this.alquilerId || !this.stationId) {
-      this.error = 'Completa todos los campos.';
+      this.errorMsg = 'Completa todos los campos.';
+      this.cdr.detectChanges();
       return;
     }
     this.devolviendo = true;
     this.bookService.devolver({ alquilerId: this.alquilerId, stationId: this.stationId }).subscribe({
       next: (res) => {
-        this.mensaje = res?.msg || '¡Bicicleta devuelta correctamente!';
+        this.confirmMsg = res?.msg || '¡Bicicleta devuelta correctamente!';
         this.devolviendo = false;
         this.alquilerId = '';
         this.stationId = '';
-        setTimeout(() => {
-          this.cargarAlquileres();
-        }, 1200);
+        this.cargarAlquileres();
+        this.cdr.detectChanges();
       },
       error: (err) => {
-        this.error = err?.error?.msg || 'Error al devolver la bicicleta.';
+        this.errorMsg = err?.error?.msg || 'Error al devolver la bicicleta.';
         this.devolviendo = false;
+        this.cdr.detectChanges();
       }
     });
   }
